@@ -1,11 +1,10 @@
 package net.sovliv.controllers;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.sovliv.rest.Hybride;
+import net.sovliv.rest.Hybrid;
 import net.sovliv.rest.Rocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,26 +23,26 @@ public class SpaceXController {
     Logger logger = LoggerFactory.getLogger(SpaceXController.class);
 
     @RequestMapping("/launch/{id}" )
-    public List<Hybride> getLaunches(@PathVariable String id) {
+    public List<Hybrid> getLaunches(@PathVariable String id) {
         String launchesJson = jsonGetRequest("https://api.spacexdata.com/v3/launches");
 
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        List<Hybride> hybrideList = null;
+        List<Hybrid> hybridList = null;
         try {
-            hybrideList = objectMapper.readValue(launchesJson, new TypeReference<List<Hybride>>() {});
+            hybridList = objectMapper.readValue(launchesJson, new TypeReference<List<Hybrid>>() {});
             logger.info("***DATA LOADED by ID***");
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             logger.error("***ERROR***");
         }
 
-        List<Hybride> response = new ArrayList<>();
-        for (Hybride hybride : hybrideList) {
-            Hybride.Rocket rocket = hybride.getRocket();
+        List<Hybrid> response = new ArrayList<>();
+        for (Hybrid hybrid : hybridList) {
+            Hybrid.Rocket rocket = hybrid.getRocket();
             if(id.equals(rocket.getRocket_id())) {
-                hybride.setRocket(null);
-                response.add(hybride);
+                hybrid.setRocket(null);
+                response.add(hybrid);
             }
         }
         return response;

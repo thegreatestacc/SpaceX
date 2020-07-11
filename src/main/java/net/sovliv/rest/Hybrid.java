@@ -1,12 +1,12 @@
 package net.sovliv.rest;
 
-public class Hybride {
+public class Hybrid {
     private String mission_name;
     private Long launch_year;
     private Links links;
     private Rocket rocket;
 
-    public Hybride() {
+    public Hybrid() {
     }
 
     public String getMission_name() {
@@ -187,7 +187,7 @@ public class Hybride {
 
     @Override
     public String toString() {
-        return "Hybride{" +
+        return "Hybrid{" +
                 "mission_name='" + mission_name + '\'' +
                 ", launch_year=" + launch_year +
                 ", links=" + links +
