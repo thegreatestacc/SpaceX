@@ -63,13 +63,13 @@ public class SpaceXController {
             e.printStackTrace();
         }
 
-        List<String> idList = new ArrayList<>();
+        List<String> response = new ArrayList<>();
         for (Rocket rocket : rocketId) {
-            idList.add(rocket.getRocket_id());
+            response.add(rocket.getRocket_id());
         }
 
         //return rocketId.stream().map(i -> i.getRocket_id()).collect(Collectors.toList());
-        return idList;
+        return response;
     }
 
     private static String streamToString(InputStream inputStream) {
