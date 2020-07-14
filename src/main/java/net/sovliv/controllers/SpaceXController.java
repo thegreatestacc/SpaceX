@@ -28,7 +28,7 @@ public class SpaceXController {
 
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        List<Hybrid> hybridList = null;
+        List<Hybrid> hybridList = new ArrayList<>();
         try {
             hybridList = objectMapper.readValue(launchesJson, new TypeReference<List<Hybrid>>() {});
             logger.info("***DATA LOADED by ID***");
@@ -54,7 +54,7 @@ public class SpaceXController {
 
         ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        List<Rocket> rocketId = null;
+        List<Rocket> rocketId = new ArrayList<>();
         try {
             rocketId = objectMapper.readValue(rocketJson, new TypeReference<List<Rocket>>() {});
             logger.info("***DATA LOADED***");
